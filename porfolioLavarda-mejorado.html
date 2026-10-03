@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Franco Lavarda | Portfolio</title>
+    <style>
+        :root {
+            --bg-1: #07111f;
+            --bg-2: #101a2c;
+            --panel: rgba(17, 25, 40, 0.8);
+            --panel-strong: #17263f;
+            --primary: #6ee7f9;
+            --secondary: #8b5cf6;
+            --accent: #fbbf24;
+            --text: #e6eefb;
+            --muted: #a4b3cf;
+            --line: rgba(255,255,255,0.12);
+            --shadow: 0 20px 45px rgba(6, 10, 20, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(110, 231, 249, 0.18), transparent 30%),
+                radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.18), transparent 35%),
+                linear-gradient(135deg, var(--bg-1), var(--bg-2));
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: min(1200px, 90%);
+            margin: 0 auto;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(10px);
+            background: rgba(7, 17, 31, 0.7);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            color: var(--text);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            transition: 0.3s ease;
+        }
+
+        .nav a:hover {
+            background: rgba(110, 231, 249, 0.12);
+            color: var(--primary);
+        }
+
+        main {
+            padding: 2rem 0 4rem;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 260px 1.2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            padding: 2rem 0 3rem;
+        }
+
+        .circle {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            margin: 0 auto;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLqNFb_a0iqOdYGztsv6-AhcbRZirh5-XFh1_549leGg&s');
+            background-size: cover;
+            background-position: center;
+            border: 4px solid rgba(110, 231, 249, 0.8);
+            box-shadow: 0 0 28px rgba(110, 231, 249, 0.35);
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .hero-card {
+            padding: 2rem;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 0.7rem;
+        }
+
+        h1, h2, h3, h4, p {
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 3vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .hero-icons {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .hero-icons img {
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.04);
+            padding: 0.4rem;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .profile-card {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .profile-card h2 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 1.6rem;
+        }
+
+        .profile-card p {
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+        }
+
+        section {
+            padding-top: 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 2rem 0 1.5rem;
+            font-size: clamp(1.8rem, 2vw, 2.5rem);
+            color: var(--text);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 90px;
+            height: 4px;
+            margin: 0.8rem auto 0;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            padding: 1.5rem;
+            min-height: 240px;
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h4 {
+            color: #f8fafc;
+            font-size: 1rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .info-card p {
+            color: var(--muted);
+            margin: 0.4rem 0;
+            line-height: 1.6;
+        }
+
+        .skills-wrap {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem auto 0;
+            max-width: 900px;
+        }
+
+        .skill {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 104px;
+            height: 104px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--line);
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.02);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .skill:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(110, 231, 249, 0.15);
+        }
+
+        .skill img {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        footer {
+            padding: 3rem 0 4rem;
+        }
+
+        .contact-box {
+            text-align: center;
+            padding: 2rem 1rem 1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .contact-links a {
+            width: 84px;
+            height: 84px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--line);
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .contact-links a:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+
+        .contact-links img {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-icons {
+                justify-content: center;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, minmax(220px, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav {
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .nav a {
+                font-size: 0.7rem;
+                padding: 0.45rem 0.7rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .circle {
+                width: 180px;
+                height: 180px;
+            }
+
+            .skill {
+                width: 86px;
+                height: 86px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container nav">
+            <a href="#Contacto">Contacto</a>
+            <a href="#Educacion">Educación</a>
+            <a href="#Aptitudes">Aptitudes</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="circle" aria-label="Foto de perfil"></div>
+
+            <div class="card hero-card">
+                <span class="eyebrow">Portfolio</span>
+                <h1>Franco Ezequiel Lavarda</h1>
+                <div class="hero-icons">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvc7BwTZxyaPvO2aNEq7vQQbZle9jVrNGTJP9QX0vXTg&s=10" alt="Logo UTN">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYglaJYH9QgI7wAS3InXBahfEDSn94Yt6OUrpAfBCubg&s=10" alt="Logo programador">
+                </div>
+            </div>
+
+            <div class="card profile-card">
+                <h2>Perfil</h2>
+                <p>Estudiante Técnico Universitario en Programación con gran capacidad de aprendizaje, con conocimientos en administración y gestión de empresas.</p>
+                <p>Me destaco por mi versatilidad frente a distintos desafíos laborales, afrontándolos con responsabilidad, compromiso y perseverancia.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 id="Educacion" class="section-title">Educación</h2>
+            <div class="grid">
+                <article class="card info-card">
+                    <h3>Primaria</h3>
+                    <p>Instituto Santa Rosa de Lima</p>
+                    <p>José C. Paz, Provincia de Buenos Aires</p>
+                    <p>Periodo 2000 – 2006</p>
+                    <p><strong>Graduado</strong></p>
+                </article>
+
+                <article class="card info-card">
+                    <h3>Secundario</h3>
+                    <h4>Bachiller en Economía y Administración</h4>
+                    <p>Instituto Santa Rosa de Lima</p>
+                    <p>José C. Paz, Provincia de Buenos Aires</p>
+                    <p>Periodo 2006 – 2012</p>
+                    <p><strong>Graduado</strong></p>
+                </article>
+
+                <article class="card info-card">
+                    <h3>Universidad</h3>
+                    <p>Técnico Universitario en Programación</p>
+                    <p>Universidad Tecnológica Nacional</p>
+                    <p>General Pacheco – Provincia de Buenos Aires</p>
+                    <p>Periodo 2025 – Actualidad</p>
+                    <p><strong>Cursando</strong></p>
+                </article>
+            </div>
+        </section>
+
+        <section>
+            <h2 id="Aptitudes" class="section-title">Aptitudes</h2>
+            <div class="skills-wrap">
+                <div class="skill"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjRz28VOCcyx5q6w-qLpRj26G8d9YQ6Wod_QD2eZpJXA&s=10" alt="C++"></div>
+                <div class="skill"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz5DJIzVsZvbiYUxd7q1R37rLK5wek55LfAlHgWRnR4A&s=10" alt="C#"></div>
+                <div class="skill"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe-uw8L63lJiHv5fLvPik7MHcTiKihci0sVGjsNUVsxg&s=10" alt=".NET"></div>
+                <div class="skill"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjY7jpbHcBRIldF19PofKTep2aK2uBVxlns-tA3IC73A&s=10" alt="SQL Server"></div>
+                <div class="skill"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKalANGR8SNCz_PDAS1yjcPqHatFb1j_nLCsDYbS6Qtg&s=10" alt="Python"></div>
+                <div class="skill"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCpx0QyRqPwjb11vINYB87UCbcIOQpVz2NN80Wu4buGg&s=10" alt="GitHub"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="Contacto">
+        <div class="container card contact-box">
+            <h2>Contáctame</h2>
+            <div class="contact-links">
+                <a href="https://www.instagram.com/francolavarda/" target="_blank" aria-label="Instagram">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlnP6CvAEwBgpm1TGpGKGgrB7sUhrvb8IZiGQ7g0ZvZQ&s=10" alt="Instagram Logo">
+                </a>
+                <a href="https://www.linkedin.com/in/franco-ezequiel-lavarda-053673368/" target="_blank" aria-label="LinkedIn">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5RCYiuMUV7LHF9TK67lwbjggXV5rPadC3C-L3iFuzkg&s=10" alt="LinkedIn Logo">
+                </a>
+                <a href="mailto:francolavarda@hotmail.com" target="_blank" aria-label="Email">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDSkRmbvpStRuAdhYSxKCGurg-rZxC4jGL-2KOC3i4RQ&s=10" alt="Email Logo">
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
